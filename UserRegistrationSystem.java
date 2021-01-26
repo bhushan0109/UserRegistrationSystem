@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class UserRegistrationSystem  {
 	static Scanner sc = new Scanner(System.in);
 
-	void fNameCheck() {		//first name check
+	void fNameCheck() { // first name check
 
 		System.out.println("Enter your name: ");
 		String name = sc.nextLine();
@@ -25,7 +25,8 @@ public class UserRegistrationSystem  {
 			System.out.println("First name starts with Cap and minimum 3 characters ex:Bhu");
 		}
 	}
-	void lNameCheck() {		//last name check
+
+	void lNameCheck() { // last name check
 
 		System.out.println("Enter your last name: ");
 		String name = sc.nextLine();
@@ -44,32 +45,34 @@ public class UserRegistrationSystem  {
 			System.out.println("last name starts with Cap and minimum 3 characters ex:Pat");
 		}
 	}
-	void validEmailCheck(){
-	System.out.println("Enter your email id: ");
-	String name = sc.nextLine();
 
-	String regex = "[a-z]+[.]+[a-z]+[@]+[a-z]{1,2}+[.]+[a-z]{1,2}+[.]+[a-z]{1,2}$";
-			 
-	// Creating a pattern object
-	Pattern pattern = Pattern.compile(regex);
-	// Creating a Matcher object
-	Matcher matcher = pattern.matcher(name);
-	// Verifying whether given phone number is valid
-	boolean result = matcher.matches();
-	if (result == true) {
-		System.out.println(" Email is valid");
-	} else {
-		System.out.println("Not valid");
-		System.out.println("Email id shhoul be this pattern ex:abc.xyz@bl.co.in ");
+	void validEmailCheck() {
+		System.out.println("Enter your email id: ");
+		String name = sc.nextLine();
 
+		String regex = "[a-z]+[.]+[a-z]+[@]+[a-z]{1,2}+[.]+[a-z]{1,2}+[.]+[a-z]{1,2}$";
+
+		// Creating a pattern object
+		Pattern pattern = Pattern.compile(regex);
+		// Creating a Matcher object
+		Matcher matcher = pattern.matcher(name);
+		// Verifying whether given phone number is valid
+		boolean result = matcher.matches();
+		if (result == true) {
+			System.out.println(" Email is valid");
+		} else {
+			System.out.println("Not valid");
+			System.out.println("Email id shhoul be this pattern ex:abc.xyz@bl.co.in ");
+
+		}
 	}
-}
-	void mobileFormatCheck() {		//first name check
+
+	void mobileFormatCheck() { // first name check
 
 		System.out.println("Enter your mobile number: ");
 		String name = sc.nextLine();
 
-		String regex = "[91]+[\s]+[0-9]{10}"; //mobile number check condition
+		String regex = "[91]+[\s]+[0-9]{10}"; // mobile number check condition
 		// Creating a pattern object
 		Pattern pattern = Pattern.compile(regex);
 		// Creating a Matcher object
@@ -83,8 +86,8 @@ public class UserRegistrationSystem  {
 			System.out.println("mobile number formate should be ex:91 9967546345 ");
 		}
 	}
-	
-	void passwordFormatCheck1(){
+
+	void passwordFormatCheck1() {
 		System.out.println("Enter your password character: ");
 		String name = sc.nextLine();
 
@@ -101,8 +104,27 @@ public class UserRegistrationSystem  {
 			System.out.println("not valid");
 			System.out.println("paasword should be 8 character ");
 		}
-	
 	}
+
+	void passwordFormatCheck2() {
+		System.out.println("Enter your password : ");
+		String name = sc.nextLine();
+
+		String regex = "(?=.*?[A-Z])[a-z A-Z 0-9]{8,}"; // password condition= paasword should be 8 character
+		// Creating a pattern object //and uppercase
+		Pattern pattern = Pattern.compile(regex);
+		// Creating a Matcher object
+		Matcher matcher = pattern.matcher(name);
+		// Verifying whether given phone number is valid
+		boolean result = matcher.matches();
+		if (result == true) {
+			System.out.println("password number is  valid");
+		} else {
+			System.out.println("not valid");
+			System.out.println("paasword should be 8 character and one upercase");
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
 
 		UserRegistrationSystem  ob = new UserRegistrationSystem ();
@@ -112,6 +134,7 @@ public class UserRegistrationSystem  {
 		System.out.println("3.Email Validation ");
 		System.out.println("4.Mobile Number Validation ");
 		System.out.println("5.Password Number Validation 1 ");
+		System.out.println("6.Password Number Validation 2 ");
 		System.out.print("Enter choice:");
 
 		int choice = sc.nextInt();
@@ -120,7 +143,7 @@ public class UserRegistrationSystem  {
 			ob.fNameCheck();
 			break;
 		case 2:
-			ob.lNameCheck();	     //METHOD CALLING
+			ob.lNameCheck(); // METHOD CALLING
 			break;
 		case 3:
 			ob.validEmailCheck();
@@ -131,6 +154,10 @@ public class UserRegistrationSystem  {
 		case 5:
 			ob.passwordFormatCheck1();
 			break;
+		case 6:
+			ob.passwordFormatCheck2();
+			break;
+
 		}
 	}
 }
