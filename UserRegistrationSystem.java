@@ -130,8 +130,8 @@ public class UserRegistrationSystem  {
 		String name = sc.nextLine();
 
 		String regex = "(?=.*?[A-Z])(?=.*?[0-9])[a-z A-Z 0-9]{8,}"; // password condition= password should be 8
-																	// character and one uper case and one numerical
-		// Creating a pattern object
+																	// character
+		// Creating a pattern object //and upercase and numerical
 		Pattern pattern = Pattern.compile(regex);
 		// Creating a Matcher object
 		Matcher matcher = pattern.matcher(name);
@@ -142,6 +142,26 @@ public class UserRegistrationSystem  {
 		} else {
 			System.out.println("not valid");
 			System.out.println("paasword should be 8 character and one upercase and at list one numeric");
+		}
+	}
+	void passwordFormatCheck4(){
+		System.out.println("Enter your password : ");
+		String name = sc.nextLine();
+
+		String regex =  "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}"; 
+		// password condition= password should be 8
+		// character and one upper case and one numerical and one special symbol
+		// Creating a pattern object
+		Pattern pattern = Pattern.compile(regex);
+		// Creating a Matcher object
+		Matcher matcher = pattern.matcher(name);
+		// Verifying whether given phone number is valid
+		boolean result = matcher.matches();
+		if (result == true) {
+			System.out.println("password  is  valid");
+		} else {
+			System.out.println("not valid");
+			System.out.println("paasword should be 8 character and one upercase and at list one numeric and special character");
 		}
 	}
 
@@ -156,6 +176,7 @@ public class UserRegistrationSystem  {
 		System.out.println("5.Password Number Validation 1 ");
 		System.out.println("6.Password Number Validation 2 ");
 		System.out.println("7.Password Number Validation 3 ");
+		System.out.println("8.Password Number Validation 4 ");
 		System.out.print("Enter choice:");
 
 		int choice = sc.nextInt();
@@ -180,6 +201,9 @@ public class UserRegistrationSystem  {
 			break;
 		case 7:
 			ob.passwordFormatCheck3();
+			break;
+		case 8:
+			ob.passwordFormatCheck4();
 			break;
 
 		}
