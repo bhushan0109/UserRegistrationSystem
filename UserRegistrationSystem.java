@@ -50,7 +50,7 @@ public class UserRegistrationSystem  {
 		System.out.println("Enter your email id: ");
 		String name = sc.nextLine();
 
-		String regex = "[a-z]+[.]+[a-z]+[@]+[a-z]{1,2}+[.]+[a-z]{1,2}+[.]+[a-z]{1,2}$";
+		String regex = "^[A-Z0-9a-z.%+-]+@[A-Za-z0-9 .\\-]+\\.[A-Za-z]{2,6}";;
 
 		// Creating a pattern object
 		Pattern pattern = Pattern.compile(regex);
