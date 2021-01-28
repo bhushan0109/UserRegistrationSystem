@@ -129,9 +129,9 @@ public class UserRegistrationSystem  {
 		System.out.println("Enter your password : ");
 		String name = sc.nextLine();
 
-		String regex = "(?=.*?[A-Z])(?=.*?[0-9])[a-z A-Z 0-9]{8,}"; // password condition= password should be 8
-																	// character
-		// Creating a pattern object //and upercase and numerical
+		String regex = "(?=.*?[A-Z])(?=.*?[0-9])[a-z A-Z 0-9]{8,}"; // password condition= password should be 8 and min one uppercase and one numerical
+																
+		// Creating a pattern object /
 		Pattern pattern = Pattern.compile(regex);
 		// Creating a Matcher object
 		Matcher matcher = pattern.matcher(name);
@@ -185,7 +185,7 @@ public class UserRegistrationSystem  {
 			ob.fNameCheck();
 			break;
 		case 2:
-			ob.lNameCheck(); // METHOD CALLING
+			ob.lNameCheck();                                                 // METHOD CALLING
 			break;
 		case 3:
 			ob.validEmailCheck();
