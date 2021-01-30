@@ -12,7 +12,7 @@ public class UserRegistrationTest {
     }
     @Test
     public void givenFirstNameSad(){
-        boolean result=userRegistration.validatePassword4("bhush");
+        boolean result=userRegistration.validateFirstName("bhush");
         Assert.assertFalse(result);
     }
 
