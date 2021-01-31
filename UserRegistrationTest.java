@@ -2,89 +2,42 @@ package com.user.registration;
 
 import org.junit.Assert;
 import org.junit.Test;
-//all junit method testing part
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+//This test class is used to all possible email formats
 public class UserRegistrationTest {
-    UserValidater userRegistration=new UserValidater();
-    @Test
-    public void givenFirstNameHappy(){
-        boolean result=userRegistration.validateFirstName("Bhush");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenFirstNameSad(){
-        boolean result=userRegistration.validatePassword4("bhush");
-        Assert.assertFalse(result);
-    }
 
-    @Test
-    public void givenLastNameHappy(){
-        boolean result=userRegistration.validateLastName("Patil");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenLastNameSad(){
-        boolean result=userRegistration.validateLastName("patil");
-        Assert.assertFalse(result);
-    }
-    @Test
-    public void givenEmailHappy(){
-        boolean result=userRegistration.validateEmail("bhupatil0001@gmail.com");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenEmailSad(){
-        boolean result=userRegistration.validateEmail("bhupatil0001gmail.com");
-        Assert.assertFalse(result);
-    }
+	public String testEmails;
+	public boolean expectedResult;
 
-    @Test
-    public void givenMobileNoHappy(){
-        boolean result=userRegistration.validateMobileNo("91 8975891291");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenMobileNoSad(){
-        boolean result=userRegistration.validateMobileNo("8975891291");
-        Assert.assertFalse(result);
-    }
-    @Test
-    public void givenPasswordOneHappy(){
-        boolean result=userRegistration.validatePassword1("abcdbd34");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenPasswordOneSad(){
-        boolean result=userRegistration.validatePassword1("fhfdhg");
-        Assert.assertFalse(result);
-    }
-    @Test
-    public void givenPasswordTwoHappy(){
-        boolean result=userRegistration.validatePassword2("Aghtjkyf");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenPasswordTwoSad(){
-        boolean result=userRegistration.validatePassword2("ghjkiuyh");
-        Assert.assertFalse(result);
-    }
-    @Test
-    public void givenPasswordThreeHappy(){
-        boolean result =userRegistration.validatePassword3("1Abhujkg");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenPasswordThreeSad(){
-        boolean result=userRegistration.validatePassword3("Agjgtyfg");
-        Assert.assertFalse(result);
-    }
-    @Test
-    public void givenPasswordFourHappy(){
-        boolean result=userRegistration.validatePassword4("@A1hjkih");
-        Assert.assertTrue(result);
-    }
-    @Test
-    public void givenPasswordFourSad(){
-        boolean result=userRegistration.validatePassword4("ghjuykhg");
-        Assert.assertFalse(result);
-    }
+	public UserRegistrationTest(String email, boolean expectedResult) {
+		this.testEmails = email;
+		this.expectedResult = expectedResult;
+	}
+
+	@Parameterized.Parameters
+	public static Collection data() {
+		return Arrays.asList(new Object[][] { { "abc@yahoo.com", true }, { "abc-100@yahoo.com", true },
+				{ "abc.100@yahoo.com", true }, { "abc111@abc.com", true }, { "abc-100@abc.net", true },
+				{ "abc.100@abc.com.au", true }, { "abc@1.com", true }, { "abc@gmail.com.com", true },
+				{ "abc+100", false }, { "abc", false }, { "abc@.com.my", false }
+
+		});
+	}
+
+	@Test
+	public void givenEmail_whenProper_shouldReturnTrue() {
+		try {
+			UserValidater userRegistration = new UserValidater();
+			boolean result = userRegistration.validateEmail(this.testEmails);
+			Assert.assertEquals(this.expectedResult, result);
+		} catch (UserRegistrationException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 }
