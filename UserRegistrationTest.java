@@ -3,127 +3,77 @@ package com.user.registration;
 import org.junit.Assert;
 import org.junit.Test;
 
-//all j unit method testing part
 public class UserRegistrationTest {
-	UserRegistrationSystem userRegistration = new UserRegistrationSystem();
+	UserRegistrationSystem UserRegistrationSystem = new UserRegistrationSystem();
 
 	@Test
-	public void givenFirstNameHappy() {
+	public void givenFirstNameValid() {
 		boolean result = true;
-		try {
-			result = userRegistration.validateFirstName("Bhu");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateFirstName.validate("Bhush");
 		Assert.assertTrue(result);
 	}
 
 	@Test
-	public void givenFirstNameSad() {
+	public void givenFirstNameInvalid() {
 		boolean result = false;
-		try {
-			result = userRegistration.validateFirstName("jd");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateFirstName.validate("bush");
 		Assert.assertFalse(result);
 	}
 
 	@Test
-	public void givenLastNameHappy() {
+	public void givenLastNameValid() {
 		boolean result = true;
-		try {
-			result = userRegistration.validateLastName("Pat");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateLastName.validate("Pat");
 		Assert.assertTrue(result);
 	}
 
 	@Test
-	public void givenLastNameSad() {
+	public void givenLastNameInvalid() {
 		boolean result = false;
-		try {
-			result = userRegistration.validateLastName("pgddj");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateLastName.validate("pat");
 		Assert.assertFalse(result);
 	}
 
 	@Test
-	public void givenEmailHappy() {
+	public void givenEmailValid() {
 		boolean result = true;
-		try {
-			result = userRegistration.validateEmail("bhupatil0001@gmail.com");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateEmail.validate("bhupatil0001@gmail.com");
 		Assert.assertTrue(result);
 	}
 
 	@Test
-	public void givenEmailSad() {
+	public void givenEmailInvalid() {
 		boolean result = false;
-		try {
-			result = userRegistration.validateEmail("bhudggdxghd");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateEmail.validate("bhushan@@gmail.com");
 		Assert.assertFalse(result);
 	}
 
 	@Test
-	public void givenMobileNoHappy() {
+	public void givenMobileNoValid() {
 		boolean result = true;
-		try {
-			result = userRegistration.validateMobileNo("91 5678976545");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateMobile.validate("91 6737726849");
 		Assert.assertTrue(result);
 	}
 
 	@Test
-	public void givenMobileNoSad() {
+	public void givenMobileNoInValid() {
 		boolean result = false;
-		try {
-			result = userRegistration.validateMobileNo("78363636836");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validateMobile.validate("6737726849");
 		Assert.assertFalse(result);
 	}
 
 	@Test
-	public void givenPasswordFourHappy() {
+	public void givenPasswordValid() {
 		boolean result = true;
-		try {
-			result = userRegistration.validatePassword("B1@12s45");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validatePassword.validate("A1@12g449");
 		Assert.assertTrue(result);
 	}
 
 	@Test
-	public void givenPasswordFourSad() {
+	public void givenPasswordInValid() {
 		boolean result = false;
-		try {
-			result = userRegistration.validatePassword("fhskdfgk");
-		} catch (UserRegistrationException e) {
-
-			e.printStackTrace();
-		}
+		result = UserRegistrationSystem.validatePassword.validate("A2g449");
 		Assert.assertFalse(result);
 	}
+
 }

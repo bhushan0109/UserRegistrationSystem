@@ -1,6 +1,10 @@
 package com.user.registration;
 
 import java.util.regex.Pattern;
+@FunctionalInterface 
+interface UserValidator {
+	boolean validate(String s);
+}
 
 public class UserRegistrationSystem {
 	private static final String NAME_PATTERN = "^[A-Z][a-z]{2,}$";
@@ -11,58 +15,10 @@ public class UserRegistrationSystem {
 	private static final String PASSWORD3_PATTERN = "(?=.?[A-Z])(?=.?[0-9])[a-z A-Z 0-9]{8,}";
 	private static final String PASSWORD4_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$";
 
-	public boolean validateFirstName(String firstName) throws UserRegistrationException {
-		try {
-			Pattern pattern = Pattern.compile(NAME_PATTERN);
-			boolean res = pattern.matcher(firstName).matches();
-			return res;
-		} catch (Exception e) {
-			throw new UserRegistrationException("Invalid Entry!");
-		}
-
-	}
-
-	public boolean validateLastName(String lastName) throws UserRegistrationException {
-		try {
-
-			Pattern pattern = Pattern.compile(NAME_PATTERN);
-			boolean res = pattern.matcher(lastName).matches();
-			return res;
-		} catch (Exception e) {
-			throw new UserRegistrationException("Invalid Entry!");
-		}
-	}
-
-	public boolean validateEmail(String email) throws UserRegistrationException {
-		try {
-
-			Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-			boolean res = pattern.matcher(email).matches();
-			return res;
-		} catch (Exception e) {
-			throw new UserRegistrationException("Invalid Entry!");
-		}
-	}
-
-	public boolean validateMobileNo(String mobileNumber) throws UserRegistrationException {
-		try {
-
-			Pattern pattern = Pattern.compile(MOBILE_PATTERN);
-			boolean res = pattern.matcher(mobileNumber).matches();
-			return res;
-		} catch (Exception e) {
-			throw new UserRegistrationException("Invalid Entry!");
-		}
-	}
-
-	public boolean validatePassword(String password) throws UserRegistrationException {
-		try {
-
-			Pattern pattern = Pattern.compile(PASSWORD4_PATTERN);
-			boolean res = pattern.matcher(password).matches();
-			return res;
-		} catch (Exception e) {
-			throw new UserRegistrationException("Invalid Entry!");
-		}
-	}
+	//used lambda fuction
+	UserValidator validateFirstName = (s) -> (Pattern.compile(NAME_PATTERN).matcher(s).matches()); 
+    UserValidator validateLastName = (s) -> (Pattern.compile(NAME_PATTERN).matcher(s).matches());
+    UserValidator validateEmail = (s) -> (Pattern.compile(EMAIL_PATTERN).matcher(s).matches());
+    UserValidator validateMobile = (s) -> (Pattern.compile(MOBILE_PATTERN).matcher(s).matches());
+    UserValidator validatePassword = (s) -> (Pattern.compile(PASSWORD4_PATTERN).matcher(s).matches());
 }
